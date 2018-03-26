@@ -1,0 +1,165 @@
+//layout
+@mixin faded-white {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 20%, rgba(255, 255, 255, 0.3));
+    }
+.container {
+    @include xy-grid-container($padding: 0);
+    @include shadow();
+}
+
+.banner {
+    @include padding(1, 1, 1, 1);
+    @include xy-grid;
+    @include flex-align(center, middle);
+    @include breakpoint(medium) {
+        @include padding(1, 1, 1, 1);
+    }
+
+    .logo {
+        @include xy-cell;
+        @include flex;
+        @include flex-align(center, top);
+        @include breakpoint(medium) {
+            @include xy-cell(4);
+        }
+
+    }
+    img {
+        height: rem-calc(150);
+    }
+    .heading {
+        @include padding(1, 1, 1, 1);
+        @include xy-cell;
+        text-align: center;
+        @include breakpoint(medium) {
+            text-align: right;
+            @include xy-cell(8);
+        }
+
+        h1 {
+            @include breakpoint(medium){
+                font-size: rem-calc(40);
+            }
+        }
+    }
+}
+
+.hero{
+    @include flex;
+    @include flex-align(center, middle);
+    position: relative;
+
+    &.image-header {
+        background-image: url(../img/image-header.jpg);
+        width: 100%;
+        height: 40vh;
+        min-height: rem-calc(200);
+    }
+
+    &.parallax {
+        background-attachment: fixed;
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &:after {
+        @include faded-white;
+        position: absolute;
+        content: '';
+        @include box(100%, 100%);
+    }
+
+    h3 {
+        z-index: 1;
+    }
+}
+
+.subsection {
+    padding: rem-calc(40) rem-calc(50);
+    >h2 {
+        @include breakpoint(small only) {
+            font-size: rem-calc(30);
+        }
+    }
+
+    p{
+        font-size: rem-calc(18);
+        line-height: 2;
+    }
+}
+.about {
+    background-color: $white;
+}
+
+.projects {
+    background-color: $light-gray;
+}
+.project-container {
+    @include xy-grid;
+    @include breakpoint(small only) {
+        @include flex-align(center, null);
+    }
+
+
+    .project-desc {
+        // padding: 0 rem-calc(10);
+    }
+}
+
+.project {
+    background: $white;
+    // border-radius: rem-calc(10);
+    transition: transform .25s;
+    overflow: hidden;
+    @include xy-cell(10, $gutter-position: top bottom);
+    @include breakpoint(medium) {
+        @include xy-cell(6, $gutters: rem-calc(60), $gutter-position: top right bottom left);
+    }
+    @include breakpoint(large) {
+        @include xy-cell(4, $gutters: rem-calc(50), $gutter-position: top right bottom left);
+    }
+
+    img {
+        transition: transform .25s;
+    }
+
+    &:hover {
+        @include shadow();
+        img {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.project-caption {
+    // background-color: red;
+    color: $black;
+    padding: rem-calc(20) rem-calc(20) rem-calc(0);
+    h3 {
+        font-size: rem-calc(25);
+    }
+
+    p{
+        line-height: 1.6;
+    }
+
+
+}
+
+.contact {
+    span {
+        @include font-bold;
+    }
+}
+
+.footer-text {
+    @include flex;
+    min-height: rem-calc(100);
+    text-align: center;
+    @include flex-align(center, middle);
+
+    p {
+        @include font-bold();
+    }
+}
